@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<div class="home">
+
+    <h2 style="text-align: center" class="text-center">Sherali Obidov (Sherxon)</h2>
+    <div style="">
+    <span style="">
+        <img src="/assets/me.jpg" style=" display: block; margin: auto;
+        border-radius: 50%; overflow: hidden; height: 60px;width: 60px;">
+    </span>
+    </div>
+    <div class="post-meta" style="text-align: center; padding: 10px">
+            Software Engineer
+    </div>
+    <div style="text-align: center; color: #515862">
+        Hi there. I'm Sherali, Certified Professional Java Developer with a M.S in Computer Science.
+        I blog about Java, Algorithms and Web Development.
+    </div>
+    {{ content }}
+
+    <h1 class="page-heading">Posts</h1>
+
+    <ul class="post-list">
+        {% for post in site.posts %}
+        <li>
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+            <h2>
+                <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+            </h2>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+
+</div>
