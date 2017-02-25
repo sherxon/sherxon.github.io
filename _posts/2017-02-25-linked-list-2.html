@@ -1,0 +1,112 @@
+---
+layout: post
+title:  "9 LinkedList Common Problems and Solutions"
+categories: linkedList
+---
+
+This is the second blog on LinkedLists. In this blog, some of the most common problems and their
+solutions are dicuessed. To make a best use of this, please read the question first and do little
+brainstorm before moving on to the solution. You can also try to implement solution once you are familiar with
+solution idea.
+
+<div style="margin: 10px"></div>
+<blockquote>1) Given a sinlgy linked list, determine if it has a cycle in it.</blockquote>
+<div style="margin: 10px"></div>
+<div style="margin: 10px"></div>
+Solution:
+<div style="margin: 10px"></div>
+a) We iterate the list and add each element into the hashtable until current element is null or
+current element is already in the hashtable. This solution uses O(N) space to store list elements in hashtable.
+Time complexity is also O(N).
+<div style="margin: 10px"></div>
+b) We can use two pointers: <b>slow</b> and <b>fast</b>.
+<b>slow</b> pointer moves step by step while <b>fast</b> pointer moves two steps at a time. If the linked list has
+a cycle <b>slow</b> and <b>fast</b> pointers meet at some point. This solution uses O(1) space, which is better
+than previous solution.
+
+<div style="margin: 10px"></div>
+Here is implementation of solution in Java.
+<div style="margin: 5px"></div>
+{% highlight java %}
+boolean hasCycle(ListNode head) {
+    if(head==null || head.next==null)return false;
+    ListNode slow=head;
+    ListNode fast=head.next;
+    while(slow!=null && fast!=null && fast.next!=null){
+        if(slow==fast)return true;
+        slow=slow.next;
+        fast=fast.next.next;
+    }
+    return false;
+}
+{% endhighlight java %}
+<div style="margin: 20px"></div>
+<blockquote>2) Given two singly linked lists, find the node at which the intersection of these
+    lists begins. Below given illustration of linked lists with intersection </blockquote>
+{% highlight html %}
+A:          a1 → a2↘
+                    c1 → c2 → c3
+                    ↗
+B:     b1 → b2 → b3
+{% endhighlight html %}
+<div style="margin: 10px"></div>
+Solution:<br/>
+a) The easy solution is adding all elements of the first linked list into Hashset and checking one by one if
+an element of the second linked list is contained in the hashset.<br/>
+Time Complexity is O(n+m) and Space Complecity is O(n)
+<div style="margin: 10px"></div>
+b) We iterate both lists and get length of each list. Then move pointer k steps forward on the longer list where
+k is the difference between lengths of lists. Now we need to move two pointers in both lists starting from head
+element in shorter list and kth element in longer list. We can find out intersection point the lists when
+two pointers meet at some point. <br/>
+Time Complexity is O(max(m,n)) and Space Complecity is O(1)
+
+<div style="margin: 10px"></div>
+c) We maintain two pointers x and y at the head of A and B lists respectively. Then we move pointers one node
+at a time. When x reaches the end of a list, then redirect it to the head of B,
+similarly when y reaches the end of a list, redirect it the head of A. If at any point x meets y,
+then x/y is the intersection node.<br/>
+Time Complexity is O(m+n) and Space Complecity is O(1)
+<div style="margin: 10px"></div>
+Below code snippet shows the third solution.
+<div style="margin: 10px"></div>
+{% highlight java %}
+
+ ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    if(headA==headB) return headA;
+    ListNode x=headA;
+    ListNode y=headB;
+    while (x!=y){
+        x= x==null ? headB : x.next;
+        y= y==null ? headA : y.next;
+    }
+    return x;
+}
+{% endhighlight html %}
+<div style="margin: 10px"></div>
+
+<blockquote>3) Given a linked list, return the node where the cycle begins without modifying the list.
+    If there is no cycle, return null.</blockquote>
+<div style="margin: 20px"></div>
+
+Solution: <br/>
+
+a) We iterate the list and add every node into Hashset, if element is already in the set we can return this element as
+cycle starting point.<br/>
+Time Complexity is O(n) and Space Complecity is O(n)
+<div style="margin: 10px"></div>
+b) This solution is combination of the first and the second problem solutions. We first find any point in the
+cycle if there is. Then break the list by setting next pointer of node to null and find intersection point
+of two lists. The intersection point is the point where cycle begins.<br/>
+Time Complexity is O(n+m) and Space Complecity is O(1)
+
+
+
+
+
+
+
+
+
+
+
