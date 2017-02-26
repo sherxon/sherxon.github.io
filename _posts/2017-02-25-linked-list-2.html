@@ -83,7 +83,7 @@ Below code snippet shows the third solution.
     }
     return x;
 }
-{% endhighlight html %}
+{% endhighlight java %}
 <div style="margin: 10px"></div>
 
 <blockquote>3) Given a linked list, return the node where the cycle begins without modifying the list.
@@ -100,13 +100,37 @@ b) This solution is combination of the first and the second problem solutions. W
 cycle if there is. Then break the list by setting next pointer of node to null and find intersection point
 of two lists. The intersection point is the point where cycle begins.<br/>
 Time Complexity is O(n+m) and Space Complecity is O(1)
+<div style="margin: 10px"></div>
+<blockquote>4) Reverse a singly linked list.</blockquote>
+<div style="margin: 10px"></div>
+Solution:<br/>
+a) We can reverse singly linked list in two ways, using recursion and iteration. The idea is to recurse until tail
+node is encountered and set current node as next element of returned element in recursion.
+<div style="margin: 10px"></div>
 
+{% highlight java %}
+class Solution {
+    ListNode newHead;
+    public ListNode reverseList(ListNode head) {
+        if(head==null || head.next==null)return head;
+        reverse(head);
+        head.next=null;
+        return newHead;
+    }
+    ListNode reverse(ListNode current){
+        if(current==null || current.next==null) {
+            newHead =current;
+            return current;
+        }
+        ListNode prev=reverse(current.next);
+        prev.next=current;
+        return current;
+    }
+}
+{% endhighlight java %}
 
-
-
-
-
-
+<div style="margin: 10px"></div>
+<blockquote>5) Sort a singly linked list in O(n log n) time using constant space complexity.</blockquote>
 
 
 
