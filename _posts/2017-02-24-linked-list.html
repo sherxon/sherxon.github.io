@@ -5,6 +5,11 @@ categories: linkedList
 comments: true
 ---
 
+This is the first blog on linked lists that contains implementations in Java and introduces basic
+operation such as add, get and delete. You can also read about problems and their solutions on linked lists
+on <a href="">LinkedList Common Problems and Solutions</a> post.
+
+<div style="margin: 10px"></div>
 Linked List is a sequence of data that are connected by links. Each list item is commonly referred as Node.
 Every node stores certain data and a link to the next element. On the other hand, Linked lists can also have
 two links (previous and next) to optimize some operations. They are called doubly linked lists.
@@ -29,8 +34,7 @@ and doubly linked list
     </span>
 </div>
 <div style="margin: 10px"></div>
-As Linus Torvalds said <blockquote>Talk is cheap. Show me the code.</blockquote> Here is implementation of
-Sinly Linked List in Java.
+Here is simple implementation of singly linked list in Java
 <div style="margin: 10px"></div>
 {% highlight java %}
 class LinkedList<E> {
@@ -86,11 +90,9 @@ class LinkedList<E> {
     private class Node {
         E elem;
         Node next;
-
         public Node(E elem) {
             this.elem = elem;
         }
-
         public Node(E el, Node node) {
             this.elem = el;
             this.next = node;
@@ -125,15 +127,12 @@ class DoublyLinkedList<E> {
         }
         size++;
     }
-
     public boolean isEmpty() {
          return size == 0;
     }
-
     public int getSize() {
          return size;
     }
-
     public E get(int index) {
         if (index >= size && index < 0) // check boundaries
             throw new NoSuchElementException();
@@ -162,20 +161,16 @@ class DoublyLinkedList<E> {
             head = head.next;
             return true;
         }
-
         // if found node is last node of the list, need to change tail
         if (temp == tail) {
             tail = temp.prev;
             return true;
         }
-
-
         // change links
         temp.prev.next = temp.next;
         temp.next.prev = temp.prev;
 
         return true;
-
     }
 
     // wrapper class for list elements
@@ -187,7 +182,6 @@ class DoublyLinkedList<E> {
         public Node(E elem) {
              this.elem = elem;
         }
-
         public Node(E elem, Node prev, Node next) {
             this.elem = elem;
             this.next = next;
