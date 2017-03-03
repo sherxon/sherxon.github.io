@@ -21,7 +21,7 @@ description: > # this means to ignore newlines until "baseurl:"
   You can also find common algorithmic problems with their solutions and
    implementation of Data Structures in Java.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://sherxon.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  Sherxon
 google_analytics: UA-92658007-1
 disqus_shortname: sherxon-github-io.
@@ -31,6 +31,7 @@ markdown: kramdown
 theme: minima
 gems:
   - jekyll-feed
+  - jekyll-seo-tag
 exclude:
   - Gemfile
   - Gemfile.lock
