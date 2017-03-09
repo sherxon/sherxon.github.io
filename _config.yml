@@ -17,7 +17,7 @@ title:  AlgoDS
 permalink: /blog/:title
 email: sheraliobidov1199@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  This blog is all about algorithms, data structures, web development and Java.
+  I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java.
   You can also find common algorithmic problems with their solutions and
    implementation of Data Structures in Java.
 baseurl: "" # the subpath of your site, e.g. /blog
