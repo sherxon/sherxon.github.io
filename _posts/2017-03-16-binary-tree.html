@@ -1,0 +1,183 @@
+---
+layout: post
+title:  "Binary Tree Common Problems and Solutions"
+categories: binaryTree
+comments: false
+description: Binary Tree Commmon Problems and Solutions
+---
+
+In this post you can learn about binary tree common problems and their solutions in Java. You can also find
+interesting and elite problems solutions about Linked Lists in my <a href="linked-list-2">previous post.</a>
+<br/>
+<br/>
+
+<h4>Short Introduction to Binary Trees.</h4>
+Binary Trees are set of nodes in which one node is linked to two other nodes (left and right). Usually a reference or a pointer
+to topmost node is stored as a root, which can be used to traverse through all other nodes. In most cases Binary
+Trees are used as Binary Search Trees (BST) that have certain properties: the values in left sub tree is always
+smaller than or equal to its parent node's value and the values in right sub tree is always larger than its parent's
+value. Here is the illustration of BST.
+<div style="margin: 10px"></div>
+<div style="">
+    <span style="">
+        <img src="/assets/bst.png" style=" display: block; margin: auto;
+         overflow: hidden; width: 700px;">
+    </span>
+</div>
+<br/>
+<br/>
+<blockquote>1)Given Binary Tree, print node values in pre-order, in-order, post-order and level order.</blockquote>
+
+Solution: <br/><br/>
+Unlike linear data structures such as ArrayList, LinkedList, Queue and Stack, Binary Trees can be traversad in
+several ways. Main traversal methods of Binary Trees are <br/>
+<ul>
+    <li><b>Pre-order</b> - traversing starts from root and goes to left subtree then to right subtree</li>
+    <li><b>In-order</b> - traversing starts from left subtree and goes to root then to right subtree</li>
+    <li><b>Post-order</b> - traversing starts from left subtree and goes to right subtree then to root</li>
+    <li><b>Level-order</b> - traversing starts from root as level 1 and goes to every other level</li>
+</ul>
+Below are solution in Java for all 4 traversal methods. <br/><br/>
+{% highlight java %}
+public void postOrder(TreeNode root) {
+    if(root == null)return;
+    postOrder(root.left); // first left
+    postOrder(root.right); // and right
+    System.out.print(root.val + " "); // then process
+}
+
+public void preOrder(TreeNode root) {
+    if(root == null)return;
+    System.out.print(root.val + " "); // process first
+    preOrder(root.left); // go to left
+    preOrder(root.right); // then right
+}
+
+public void inOrder(TreeNode root) {
+    if(root == null)return;
+    inOrder(root.left); // first left
+    System.out.print(root.val + " "); // process
+    inOrder(root.right); // then go to right
+}
+
+public void levelOrder(TreeNode root) {
+    if (root == null) return;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root); // add first level to queue
+    int nodeCountInLevel = 1;
+        while (!q.isEmpty()) {
+            TreeNode x = q.remove();
+            nodeCountInLevel--;
+            if (x.left != null)
+                q.add(x.left);
+            if (x.right != null)
+                q.add(x.right);
+
+            // move to next level when all nodes are processed in current level
+            if (nodeCountInLevel == 0 && !q.isEmpty()) {
+                nodeCountInLevel += q.size();
+                System.out.println(q);
+            }
+        }
+}
+{% endhighlight %}
+</TreeNode>
+<br/>
+<br/>
+<blockquote>2) Invert Binary Tree</blockquote>
+Google: 90% of our engineers use the software you wrote (Homebrew),
+but you can’t invert a binary tree on a whiteboard so fuck off.
+<a href="https://twitter.com/mxcl/status/608682016205344768">Here is motivation to learn how to invert Binary Tree.</a>
+<br/>
+<br/>
+Solution:<br/>
+The inverse of an empty tree is the empty tree. The inverse of a tree with root <b>r</b> and subtrees
+<b>left</b>b and <b>right</b> is a tree with root <b>r</b> whose right subtree is the inverse of <b>left</b>
+and whose left subtree is the inverse of <b>right</b>. </br>
+{% highlight java %}
+public TreeNode invertTree(TreeNode root) {
+    if (root == null) return null;
+    TreeNode tempRight = root.right;
+    root.right = invertTree(root.left);
+    root.left = invertTree(tempRight);
+    return root;
+}
+{% endhighlight %}
+<br/>
+Time Complexity is O(n), becuase each node is vitised only once. </br>
+Space Complexity is O(n) because of recursion h (height) number of stack calls.</br>
+<br/>
+<br/>
+<blockquote>3) Given two binary trees, check if they are structurally identical and the nodes have the same value. </blockquote>
+<br/>
+Solution:<br/>
+To invert a Binary Tree, we do pre-order traverse both trees and check if values of the nodes in each tree is the same.
+Iterative and recursive approach can be used to solve this problem. Below I presented my recursive solution.
+<br/>
+<br/>
+{% highlight java %}
+boolean isSameTree(TreeNode p, TreeNode q) {
+        // base case
+        if(p == null || q == null)return p ==q ;
+        // recursion, check if values are equal
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+}
+{% endhighlight %}
+Time Complexity is O(n), becuase each node is vitised only once. </br>
+Space Complexity is O(n) because of recursion h (height) number of stack calls.</br>
+<br/>
+<br/>
+<blockquote>4) Find Lowest Common Ancestor (LCA) of a Binary Search Tree</blockquote>
+<i>According to <a href="https://en.wikipedia.org/wiki/Lowest_common_ancestor">WikiPedia definition </a>,
+The lowest common ancestor is defined between two nodes v and w as the lowest node in T that has both v and w as
+descendants (where we allow a node to be a descendant of itself).</i>
+<br/>
+<br/>
+Solution:<br/>
+We walk down the tree as long as both p and q are in the same sub tree, in which case their values
+are both smaller than root's value or greater than root's value. Return when one of the p and q, are
+larger than root's value and the other is smaller than root's value. <br/>
+{% highlight java %}
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if(root==null)return null;
+    if(root.val < p.val && root.val < q.val)
+        return lowestCommonAncestor(root.right, p, q);
+    else if(root.val > p.val && root.val > q.val)
+        return lowestCommonAncestor(root.left, p, q);
+    else return root;
+}
+{% endhighlight %}
+<br/>
+Time Complexity is O(n), becuase each node is vitised only once. </br>
+<br/><br/>
+<blockquote>5) Given a binary tree and a sum, determine if the tree has a root-to-leaf path such that adding up all the values along the path equals the given sum.</blockquote>
+<br/>
+Solution:<br>
+We subtract the value of current node from sum until it reaches a leaf node and the subtraction equals 0,
+then we can make sure there is a path. Otherwise the subtraction at the end could not be 0.
+<br/>
+{% highlight java %}
+public boolean hasPathSum(TreeNode root, int sum) {
+    if(root == null)return false;
+    sum-=root.val;
+    if(sum == 0 && root.left == null && root.right == null) return true;
+    return hasPathSum(root.left, sum) || hasPathSum(root.right, sum);
+}
+{% endhighlight %}
+<br/>
+<br/>
+<h4>Here are some other mostly encountered Binary Tree problems and Solutions</h4>
+<ul>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/easy/MaximumDepthofBinaryTree.java">Maximum Depth of Binary Tree</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/easy/MinimumDepthofBinaryTree.java">Minimum Depth of Binary Tree</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/ConvertSortedListtoBinarySearchTree.java">Convert Sorted List to Binary Search Tree</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/ConvertSortedArraytoBinarySearchTree.java">Convert Sorted Array to Binary Search Tree</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/easy/SymmetricTree.java">Check If Binary Trees are symmetric</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/FlattenBinaryTreetoLinkedList.java">Flatten Binary Tree to Linked List</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/BinaryTreeRightSideView.java">Binary Tree Right Side View</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/DeleteNodeinaBST.java">Delete Node in a BST</a></li>
+    <li><a href="https://github.com/sherxon/AlgoDS/blob/master/src/interviewquestions/medium/ValidateBinarySearchTree.java">Validate Binary Search Tree</a></li>
+</ul>
+
+
