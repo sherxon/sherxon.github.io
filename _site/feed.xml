@@ -1,6 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-24T23:46:21-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-23T23:12:00-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
  implementation of Data Structures in Java.
-</subtitle><entry><title type="html">Binary Tree Common Problems and Solutions</title><link href="http://localhost:4000/blog/binary-tree" rel="alternate" type="text/html" title="Binary Tree Common Problems and Solutions" /><published>2017-03-16T00:00:00-05:00</published><updated>2017-03-16T00:00:00-05:00</updated><id>http://localhost:4000/blog/binary-tree</id><content type="html" xml:base="http://localhost:4000/blog/binary-tree">In this post you can learn about binary tree common problems and their solutions in Java. You can also find
+</subtitle><entry><title type="html">File IO operation comparisons in Java</title><link href="http://localhost:4000/blog/fastest-io-in-java" rel="alternate" type="text/html" title="File IO operation comparisons in Java" /><published>2017-04-23T00:00:00-05:00</published><updated>2017-04-23T00:00:00-05:00</updated><id>http://localhost:4000/blog/fastest-io-in-java</id><content type="html" xml:base="http://localhost:4000/blog/fastest-io-in-java">&lt;style&gt;
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    table {
+        background-color: transparent;
+    }
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+    }
+    .table-bordered&gt;tbody&gt;tr&gt;td, .table-bordered&gt;tbody&gt;tr&gt;th, .table-bordered&gt;tfoot&gt;tr&gt;td, .table-bordered&gt;tfoot&gt;tr&gt;th, .table-bordered&gt;thead&gt;tr&gt;td, .table-bordered&gt;thead&gt;tr&gt;th {
+        border: 1px solid #ddd;
+    }
+    .table-condensed&gt;tbody&gt;tr&gt;td, .table-condensed&gt;tbody&gt;tr&gt;th, .table-condensed&gt;tfoot&gt;tr&gt;td, .table-condensed&gt;tfoot&gt;tr&gt;th, .table-condensed&gt;thead&gt;tr&gt;td, .table-condensed&gt;thead&gt;tr&gt;th {
+        padding: 5px;
+    }
+    .table&gt;tbody&gt;tr&gt;td, .table&gt;tbody&gt;tr&gt;th, .table&gt;tfoot&gt;tr&gt;td, .table&gt;tfoot&gt;tr&gt;th, .table&gt;thead&gt;tr&gt;td, .table&gt;thead&gt;tr&gt;th {
+        padding: 8px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+&lt;/style&gt;
+Recently, I started attending contests in Online Judge websites just for fun. To get AC (passed all test cases
+and accepted) result in these contests, your solution has to be time and memory efficient. Most of the problems have several
+test cases to evaluate solutions. So, reading those test cases and outputting your results into another file to check
+may take much time as IO operations are toooo slow compared to other operations.
+&lt;div style=&quot;margin: 10px&quot;&gt;&lt;/div&gt;
+
+Here are some approaches in Java and explanations with benchmarks you can use for writing into
+file and reading from it. These benchmarks are done using Intel® Core™ i3-3120M CPU @ 2.50GHz × 4 in 64-bit Ubuntu 14.04
+with Java SE 1.8.0_20 on SSD. There are several factors(CPU, Hard disk and OS)
+that can make these benchmark results different.
+Hovewer, the relative difference is almost the same in all machines.
+
+&lt;div style=&quot;margin: 10px&quot;&gt;&lt;/div&gt;
+&lt;div style=&quot;margin: 20px&quot;&gt;&lt;/div&gt;
+&lt;table class=&quot;table table-condensed table-bordered&quot;&gt;
+	&lt;head&gt;
+		&lt;tr&gt;
+			&lt;td&gt;JavaClass/FIleSize&lt;/td&gt;
+			&lt;td&gt; 1 MB &lt;/td&gt;
+			&lt;td&gt; 10 MB &lt;/td&gt;
+			&lt;td&gt; 100 MB &lt;/td&gt;
+			&lt;td&gt; 1000 MB &lt;/td&gt;
+			&lt;td&gt; Code &lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/head&gt;
+	&lt;tbody&gt;
+			&lt;td&gt;FileInputStream&lt;/td&gt;
+			&lt;td&gt; 600 ms &lt;/td&gt;
+			&lt;td&gt; 4500 ms&lt;/td&gt;
+			&lt;td&gt; 41200 ms &lt;/td&gt;
+			&lt;td&gt; 425400 &lt;/td&gt;
+			&lt;td&gt;&lt;a href=&quot;https://github.com/sherxon/AlgoDS/tree/master/src/oi&quot;&gt;Link&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;Scanner&lt;/td&gt;
+			&lt;td&gt; 200 ms &lt;/td&gt;
+			&lt;td&gt; 450 ms&lt;/td&gt;
+			&lt;td&gt; 3100 ms &lt;/td&gt;
+			&lt;td&gt; N/A &lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;https://github.com/sherxon/AlgoDS/tree/master/src/oi&quot;&gt;Link&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;BufferedReader&lt;/td&gt;
+			&lt;td&gt; 60 ms &lt;/td&gt;
+			&lt;td&gt; 390 ms&lt;/td&gt;
+			&lt;td&gt; 3400 ms &lt;/td&gt;
+			&lt;td&gt; 32900 &lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;https://github.com/sherxon/AlgoDS/tree/master/src/oi&quot;&gt;Link&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;BufferedInputStream&lt;/td&gt;
+			&lt;td&gt; 30 ms &lt;/td&gt;
+			&lt;td&gt; 350 ms&lt;/td&gt;
+			&lt;td&gt; 3300 ms &lt;/td&gt;
+			&lt;td&gt; 32100 &lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;https://github.com/sherxon/AlgoDS/tree/master/src/oi&quot;&gt;Link&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;MappedByteBuffer&lt;/td&gt;
+			&lt;td&gt; 20 ms &lt;/td&gt;
+			&lt;td&gt; 25 ms&lt;/td&gt;
+			&lt;td&gt; 160 ms &lt;/td&gt;
+			&lt;td&gt; 1450 ms &lt;/td&gt;
+            &lt;td&gt;&lt;a href=&quot;https://github.com/sherxon/AlgoDS/tree/master/src/oi&quot;&gt;Link&lt;/a&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;</content><summary type="html">Recently, I started attending contests in Online Judge websites just for fun. To get AC (passed all test cases
+and accepted) result in these contests, your solution has to be time and memory efficient. Most of the problems have several
+test cases to evaluate solutions. So, reading those test cases and outputting your results into another file to check
+may take much time as IO operations are toooo slow compared to other operations.</summary></entry><entry><title type="html">Binary Tree Common Problems and Solutions</title><link href="http://localhost:4000/blog/binary-tree" rel="alternate" type="text/html" title="Binary Tree Common Problems and Solutions" /><published>2017-03-16T00:00:00-05:00</published><updated>2017-03-16T00:00:00-05:00</updated><id>http://localhost:4000/blog/binary-tree</id><content type="html" xml:base="http://localhost:4000/blog/binary-tree">In this post you can learn about binary tree common problems and their solutions in Java. You can also find
 interesting and elite problems solutions about Linked Lists in my &lt;a href=&quot;linked-list-2&quot;&gt;previous post.&lt;/a&gt;
 &lt;br/&gt;
 &lt;br/&gt;
