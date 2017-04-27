@@ -34,13 +34,15 @@ description: This blog post is about several approaches of File IO, benchmark an
         border-top: 1px solid #ddd;
     }
 </style>
-Recently, I started attending contests in Online Judge websites just for fun. To get AC (passed all test cases
+When I have free time, I attend contests in Online Judge websites just for fun. To get AC (passed all test cases
 and accepted) result in these contests, your solution has to be time and memory efficient. Most of the problems have several
-test cases to evaluate solutions. So, reading those test cases and outputting your results into another file to check
-may take much time as IO operations are toooo slow compared to other operations.
+test cases to evaluate solutions. So, reading those test cases from file and outputting your results into another file to check
+may take much time as File Input and Output (IO) operations are toooo slow compared to other operations in most programming languages.
 <div style="margin: 10px"></div>
 
-Here are some approaches in Java and explanations with benchmarks you can use for writing into
+I decided to benchmark all possible ways of reading and writing data into files in Java. Now I present you some
+results I found. Note that this post only shows results without any tuning disk file IO such as low level caching.
+Here are some approaches in Java with explanations you can use for writing into
 file and reading from it. These benchmarks are done using Intel® Core™ i3-3120M CPU @ 2.50GHz × 4 in 64-bit Ubuntu 14.04
 with Java SE 1.8.0_20 on SSD. There are several factors(CPU, Hard disk and OS)
 that can make these benchmark results different.
@@ -51,7 +53,7 @@ Hovewer, the relative difference is almost the same in all machines.
 <table class="table table-condensed table-bordered">
 	<head>
 		<tr>
-			<td>JavaClass/FIleSize</td>
+			<td>JavaClass/FileSize</td>
 			<td> 1 MB </td>
 			<td> 10 MB </td>
 			<td> 100 MB </td>
@@ -64,31 +66,32 @@ Hovewer, the relative difference is almost the same in all machines.
 			<td> 600 ms </td>
 			<td> 4500 ms</td>
 			<td> 41200 ms </td>
-			<td> 425400 </td>
+			<td> 425400 ms</td>
 			<td><a href="https://github.com/sherxon/AlgoDS/tree/master/src/oi">Link</a></td>
 		</tr>
-		<tr>
-			<td>Scanner</td>
-			<td> 200 ms </td>
-			<td> 450 ms</td>
-			<td> 3100 ms </td>
-			<td> N/A </td>
-            <td><a href="https://github.com/sherxon/AlgoDS/tree/master/src/oi">Link</a></td>
-		</tr>
-		<tr>
+            <tr>
+                <td>BufferedInputStream</td>
+                <td> 30 ms </td>
+                <td> 350 ms</td>
+                <td> 3300 ms </td>
+                <td> 32100 ms</td>
+                <td><a href="https://github.com/sherxon/AlgoDS/tree/master/src/oi">Link</a></td>
+            </tr>
+        <tr>
 			<td>BufferedReader</td>
 			<td> 60 ms </td>
 			<td> 390 ms</td>
 			<td> 3400 ms </td>
-			<td> 32900 </td>
+			<td> 32900 ms</td>
             <td><a href="https://github.com/sherxon/AlgoDS/tree/master/src/oi">Link</a></td>
 		</tr>
-		<tr>
-			<td>BufferedInputStream</td>
-			<td> 30 ms </td>
-			<td> 350 ms</td>
-			<td> 3300 ms </td>
-			<td> 32100 </td>
+
+        <tr>
+			<td>Direct BufferedInputStream</td>
+			<td> 50 ms </td>
+			<td> 80 ms</td>
+			<td> 280 ms </td>
+			<td> 3300 ms</td>
             <td><a href="https://github.com/sherxon/AlgoDS/tree/master/src/oi">Link</a></td>
 		</tr>
 		<tr>
@@ -101,4 +104,59 @@ Hovewer, the relative difference is almost the same in all machines.
 		</tr>
 	</tbody>
 </table>
+<div style="margin: 20px"></div>
+What the Difference! You may be wondering why the famous and mostly used input stream approach is so slow.
+Main reason for this is that <a href="https://docs.oracle.com/javase/7/docs/api/java/io/FileInputStream.html">FileInputStream</a>
+calls native read() method for each next 1 byte (raw octet, 8 bit) of the file content. When the file size is 1 MB read() method is called
+1048576 times that is 1024 x 1024. Now you can imagine how many times it is called for 1000MB.
+<div style="margin: 10px"></div>
+<b>
+    Rule 1. Try to reduce number of method calls to underlying system and disk.
+</b>
+<div style="margin: 20px"></div>
+
+To reduce those method calls in FileInputStream, we can read some amount of data (1 MB or 2 MB) from disk and
+store it in memory then use this stored data. In this case, we dont call read() method for each next byte.
+As accessing to memory is much faster than accessing to disk, we can speed up our reading operation. BufferedInputStream
+use the same strategy to make File IO faster by storing data in buffer (8192 bytes). When read() method is callled
+in BufferedStreams, data is read from buffered array in memory and rarely accesses to undelying system.
+
+<div style="margin: 10px"></div>
+
+We can create our own buffer array with bigger size and speed up reading. The Direct BufferedInputStream appraoch
+shows benchmark of using 2MB byte array as buffer. As you can see, that is nearly 10 times faster than Java's
+default Bufferedstream usage when it comes to read data from 1000 MB file. You can buffer the whole file into byte
+ array unless you have enough space in memory.
+
+<div style="margin: 10px"></div>
+
+<b>
+    Rule 2. Use your own buffer with certain size according to your business logic.
+</b>
+
+<div style="margin: 10px"></div>
+
+If you pay attention above, we only discussed about reading bytes from file. Hovewer, there are many cases
+that we want to read content of the file as characters. Unlike BufferedStreams, BufferedReader is all about
+reading characters. In the background, it reads bytes (like streams) from disk and translates into characters.
+You can see the BufferedReader works little slower than BufferedStreams because of translaton proccess.
+
+<div style="margin: 10px"></div>
+Next comes hero of File IO classes, Memory Mapped IO Classes in Java. So, What is Memory Mapped file in Java?
+Memory mapped files are new feature in Java nio package, which allows to access contents of file directly from
+memory. This is achieved by mapping whole file or portion of file into memory and operating system takes care of
+loading page requested and writing into file while application only deals with memory which results
+in very fast IO operations. Memory used to load Memory mapped file is outside of Java heap Space. We use MappedByteBuffer
+in Java to read and write from memory.
+<div style="margin: 10px"></div>
+Memory Mapped files are so fast that they are used when performance is very important. However, there are some
+tradeoffs such as occurance of page faults if requested page is not in memory.
+
+
+
+
+
+
+
+
 
