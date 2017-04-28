@@ -142,7 +142,7 @@ reading characters. In the background, it reads bytes (like streams) from disk a
 You can see the BufferedReader works little slower than BufferedStreams because of translaton proccess.
 
 <div style="margin: 10px"></div>
-Next comes hero of File IO classes, Memory Mapped IO Classes in Java. So, What is Memory Mapped file in Java?
+Next comes MemoryByteBuffer, which is Memory Mapped IO Class in Java. So, What is Memory Mapped file in Java?
 Memory mapped files are new feature in Java nio package, which allows to access contents of file directly from
 memory. This is achieved by mapping whole file or portion of file into memory and operating system takes care of
 loading page requested and writing into file while application only deals with memory which results
@@ -151,6 +151,12 @@ in Java to read and write from memory.
 <div style="margin: 10px"></div>
 Memory Mapped files are so fast that they are used when performance is very important. However, there are some
 tradeoffs such as occurance of page faults if requested page is not in memory.
+
+<div style="margin: 10px"></div>
+If your application is dealing with small size of files, choosing MappedByteBuffer or BufferedStreams does
+not make much difference. Hovewer, reading data from large files using and changing certain pages of the file
+using multiple cores makes huge impact in performance. As Mapped Files loads the whole or some region of the file
+into shared memory, every process does not have to load the file into memory.
 
 
 

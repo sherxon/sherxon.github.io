@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-27T18:40:34-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-04-28T09:27:43-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
  implementation of Data Structures in Java.
 </subtitle><entry><title type="html">File IO operation comparisons in Java</title><link href="http://localhost:4000/blog/fastest-io-in-java" rel="alternate" type="text/html" title="File IO operation comparisons in Java" /><published>2017-04-23T00:00:00-05:00</published><updated>2017-04-23T00:00:00-05:00</updated><id>http://localhost:4000/blog/fastest-io-in-java</id><content type="html" xml:base="http://localhost:4000/blog/fastest-io-in-java">&lt;style&gt;
     .table-bordered {
@@ -137,7 +137,7 @@ reading characters. In the background, it reads bytes (like streams) from disk a
 You can see the BufferedReader works little slower than BufferedStreams because of translaton proccess.
 
 &lt;div style=&quot;margin: 10px&quot;&gt;&lt;/div&gt;
-Next comes hero of File IO classes, Memory Mapped IO Classes in Java. So, What is Memory Mapped file in Java?
+Next comes MemoryByteBuffer, which is Memory Mapped IO Class in Java. So, What is Memory Mapped file in Java?
 Memory mapped files are new feature in Java nio package, which allows to access contents of file directly from
 memory. This is achieved by mapping whole file or portion of file into memory and operating system takes care of
 loading page requested and writing into file while application only deals with memory which results
@@ -145,7 +145,13 @@ in very fast IO operations. Memory used to load Memory mapped file is outside of
 in Java to read and write from memory.
 &lt;div style=&quot;margin: 10px&quot;&gt;&lt;/div&gt;
 Memory Mapped files are so fast that they are used when performance is very important. However, there are some
-tradeoffs such as occurance of page faults if requested page is not in memory.</content><summary type="html">When I have free time, I attend contests in Online Judge websites just for fun. To get AC (passed all test cases
+tradeoffs such as occurance of page faults if requested page is not in memory.
+
+&lt;div style=&quot;margin: 10px&quot;&gt;&lt;/div&gt;
+If your application is dealing with small size of files, choosing MappedByteBuffer or BufferedStreams does
+not make much difference. Hovewer, reading data from large files using and changing certain pages of the file
+using multiple cores makes huge impact in performance. As Mapped Files loads the whole or some region of the file
+into shared memory, every process does not have to load the file into memory.</content><summary type="html">When I have free time, I attend contests in Online Judge websites just for fun. To get AC (passed all test cases
 and accepted) result in these contests, your solution has to be time and memory efficient. Most of the problems have several
 test cases to evaluate solutions. So, reading those test cases from file and outputting your results into another file to check
 may take much time as File Input and Output (IO) operations are toooo slow compared to other operations in most programming languages.</summary></entry><entry><title type="html">Binary Tree Common Problems and Solutions</title><link href="http://localhost:4000/blog/binary-tree" rel="alternate" type="text/html" title="Binary Tree Common Problems and Solutions" /><published>2017-03-16T00:00:00-05:00</published><updated>2017-03-16T00:00:00-05:00</updated><id>http://localhost:4000/blog/binary-tree</id><content type="html" xml:base="http://localhost:4000/blog/binary-tree">In this post you can learn about binary tree common problems and their solutions in Java. You can also find
