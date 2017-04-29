@@ -107,8 +107,10 @@ Hovewer, the relative difference is almost the same in all machines.
 <div style="margin: 20px"></div>
 What the Difference! You may be wondering why the famous and mostly used input stream approach is so slow.
 Main reason for this is that <a href="https://docs.oracle.com/javase/7/docs/api/java/io/FileInputStream.html">FileInputStream</a>
-calls native read() method for each next 1 byte (raw octet, 8 bit) of the file content. When the file size is 1 MB read() method is called
-1048576 times that is 1024 x 1024. Now you can imagine how many times it is called for 1000MB.
+calls native read() method for each next 1 byte (raw octet, 8 bit) of the file content. When the file size is 1 MB, read() method is called
+1048576 times that is 1024 x 1024. Now you can imagine how many times it is called for 1000MB. So, when working
+with Files, the first rule that you need to consider to speed up your application is the number of method calls()
+to underlying system and disk.
 <div style="margin: 10px"></div>
 <b>
     Rule 1. Try to reduce number of method calls to underlying system and disk.
@@ -116,7 +118,7 @@ calls native read() method for each next 1 byte (raw octet, 8 bit) of the file c
 <div style="margin: 20px"></div>
 
 To reduce those method calls in FileInputStream, we can read some amount of data (1 MB or 2 MB) from disk and
-store it in memory then use this stored data. In this case, we dont call read() method for each next byte.
+store it in memory then use this stored data. In this case, we dont make access to disk for each next byte.
 As accessing to memory is much faster than accessing to disk, we can speed up our reading operation. BufferedInputStream
 use the same strategy to make File IO faster by storing data in buffer (8192 bytes). When read() method is callled
 in BufferedStreams, data is read from buffered array in memory and rarely accesses to undelying system.
@@ -126,7 +128,7 @@ in BufferedStreams, data is read from buffered array in memory and rarely access
 We can create our own buffer array with bigger size and speed up reading. The Direct BufferedInputStream appraoch
 shows benchmark of using 2MB byte array as buffer. As you can see, that is nearly 10 times faster than Java's
 default Bufferedstream usage when it comes to read data from 1000 MB file. You can buffer the whole file into byte
- array unless you have enough space in memory.
+ array as long as you have enough space in memory.
 
 <div style="margin: 10px"></div>
 
