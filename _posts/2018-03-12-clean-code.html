@@ -1,0 +1,121 @@
+---
+layout: post
+title:  "How to write clean code"
+categories: cleanCode
+comments: true
+description: How to write clean code, points to keep in mind to be become better programmer
+---
+
+In this article, I am going to talk about a few key points on how to write clean code by avoiding
+some common mistakes. The term clean code is very broad and subjective, but there are conventions, standards and points to consider in coding that makes it more human readable.
+<br/>
+Before starting talking about the key points to write clean code, I want to emphasize that It does
+not take one or two days to be good at clean coding. You need to practice
+until it becomes a second nature.
+<br/>
+<br/>
+You are author and reader. While writing code, keep in mind that you are author and your target audience is not computer, it is you, your coworkers and millions of other developers in case it is open source.
+Writing every line of code with this idea in mind helps you use your knowledge to its fullest.
+<br/>
+<br/>
+Let's start with very simple one-naming convention. Depending on your programming language choice,
+try to implement using only one (not mixed) naming convention across your team.
+Most popular ones are <u>camelCase</u> favoured by Java, C# community and <u>snake_case</u> which is popular among php and python programmers.
+
+<br/>
+<br/>
+
+The next step on appropriate naming is that you should start paying attention to naming variables.
+The variable names should answer only one question with less word possible -
+<b>what is the value of this variable to programmer.</b>
+It should never answer why this variable is created or how this variable is used.
+Here are couple of bad examples you have have seen.
+
+<br/><br/>
+{% highlight java %}
+Wrong:
+protected Date d; // orderDate
+protected Date theProductOrderedDate;
+public Date genymdhms;
+
+String[] data = readRecord();
+print("ID: ", data["student_id"])
+
+Right
+protected Date orderDate
+public Date generationTimestamp;
+
+String[] student = readRecord();
+print("ID: ", student["student_id"])
+
+{% endhighlight %}
+<br/>
+<br/>
+As you read, variable names with single letter, unpronounceable words or generic names such as
+data and total are all very confusing when dealing with this variable.
+These types of naming leads to assumptions when reading it and assumptions create bugs.
+Sometimes, these bad naming comes from thinking too much about appropriate names eventually it loses its meaning.
+
+<br/>
+<br/>
+When it comes to naming methods/functions, there is one simple rule.
+We know that a function does one job. Similarly, the function name should only answer to one question-
+<b>What does this function do?</b>
+As you guess, it should have one verb and only tells about its purpose.
+If you create a function with nice name and the function does more than it suggests on its name,
+then you should reconsider renaming or moving extra logic into another function.
+The more atomic functions you have, the less arguments they will have as those
+functions do not need many arguments to do a single job. This makes code more beautiful and easy to reuse.
+
+<br/>
+<br/>
+
+Next comes naming classes. You may think this is the easiest one because you usually have more options to name a class
+compared to variable. This is not always true. One of the biggest issues with class naming is long sentence-like names.
+Here are couple of examples
+<br/>
+<br/>
+<a href="https://docs.spring.io/spring/docs/2.5.x/javadoc-api/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.html) https://docs.spring.io/spring/docs/2.5.x/javadoc-api/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.html">
+    SimpleBeanFactoryAwareAspectInstanceFactory
+</a>
+<br/>
+<a href="http://grepcode.com/file/repository.springsource.com/org.aspectj/com.springsource.org.aspectj.weaver/1.6.3/org/aspectj/weaver/patterns/HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor.java">
+    HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor
+</a>
+<br/>
+To avoid such names, you may try locating classes in right packages with concise documentation. Class names dont have to say anything about how/when/where to use.
+The only question class name should concern is what this class is about.
+<br/>
+<br/>
+Habitual class naming such as ending exceptions with Exception keyword is another big issue among programmers.
+In most cases it completely makes sense to remove exception suffix from classes and
+the meaning does not change.
+<i>IllegalArgumentException</i>, <i>NullReferenceException</i> or <i>EntityNotFoundException</i> are nice examples that can be used without the exception suffix.
+So, you may think about that not all big company libraries are appropriately named all the time.
+
+<br/>
+<br/>
+White space is nice space. Often I see people writing smashed-up code without leaving any white space/line anywhere.
+This makes really hard to read and eyes get strained when reading
+such code. So, in general, if you’re implementing more logic in one block, and then try to separate the code chunks into logical pieces,
+maybe have all of your code that positions some text fields, then a line of whitespace, and then write another chunk where you assign them all a value.
+Things like this might seem annoying at the time of writing, but are crucial when trying to quickly find something in a large section of unfamiliar code.
+
+<br/>
+<br/>
+Commenting, it saves time for programmer and money for company. The easiest way of contributing to project success is by commenting existing code.
+Sometimes, it seems daunting to write couple lines of comments after implementing performant algorithm or solving huge problem.
+But the commenting this adds more value to the solution.
+
+<br/>
+<br/>
+
+Here are some ways that can help you to make habit of writing clean code.
+You can always download nice coding style
+<a href="https://google.github.io/styleguide/">Google coding style guide</a> and integrate it your powerful IDE.
+This makes sure that you have right naming convention and indentation to some extend.
+
+<br/>
+<br/>
+
+Happy clean coding!
