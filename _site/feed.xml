@@ -1,6 +1,129 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-11-25T13:34:09-06:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-12T20:13:43-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
  implementation of Data Structures in Java.
-</subtitle><entry><title type="html">Microservice Architecture Pattern using Spring Boot and netflix technologies and helpful hints</title><link href="http://localhost:4000/blog/microservice-poc" rel="alternate" type="text/html" title="Microservice Architecture Pattern using Spring Boot and netflix technologies and helpful hints" /><published>2017-09-01T00:00:00-05:00</published><updated>2017-09-01T00:00:00-05:00</updated><id>http://localhost:4000/blog/microservice-poc</id><content type="html" xml:base="http://localhost:4000/blog/microservice-poc"></content></entry><entry><title type="html">File IO operation comparisons in Java</title><link href="http://localhost:4000/blog/fastest-io-in-java" rel="alternate" type="text/html" title="File IO operation comparisons in Java" /><published>2017-04-29T00:00:00-05:00</published><updated>2017-04-29T00:00:00-05:00</updated><id>http://localhost:4000/blog/fastest-io-in-java</id><content type="html" xml:base="http://localhost:4000/blog/fastest-io-in-java">&lt;style&gt;
+</subtitle><entry><title type="html">How to write clean code</title><link href="http://localhost:4000/blog/clean-code" rel="alternate" type="text/html" title="How to write clean code" /><published>2018-03-12T00:00:00-05:00</published><updated>2018-03-12T00:00:00-05:00</updated><id>http://localhost:4000/blog/clean-code</id><content type="html" xml:base="http://localhost:4000/blog/clean-code">In this article, I am going to talk about a few key points on how to write clean code by avoiding
+some common mistakes. The term clean code is very broad and subjective, but there are conventions, standards and points to consider in coding that makes it more human readable.
+&lt;br/&gt;
+Before starting talking about the key points to write clean code, I want to emphasize that It does
+not take one or two days to be good at clean coding. You need to practice
+until it becomes a second nature.
+&lt;br/&gt;
+&lt;br/&gt;
+You are author and reader. While writing code, keep in mind that you are author and your target audience is not computer, it is you, your coworkers and millions of other developers in case it is open source.
+Writing every line of code with this idea in mind helps you use your knowledge to its fullest.
+&lt;br/&gt;
+&lt;br/&gt;
+Let's start with very simple one-naming convention. Depending on your programming language choice,
+try to implement using only one (not mixed) naming convention across your team.
+Most popular ones are &lt;u&gt;camelCase&lt;/u&gt; favoured by Java, C# community and &lt;u&gt;snake_case&lt;/u&gt; which is popular among php and python programmers.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+The next step on appropriate naming is that you should start paying attention to naming variables.
+The variable names should answer only one question with less word possible -
+&lt;b&gt;what is the value of this variable to programmer.&lt;/b&gt;
+It should never answer why this variable is created or how this variable is used.
+Here are couple of bad examples you have have seen.
+
+&lt;br/&gt;&lt;br/&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;nl&quot;&gt;Wrong:&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// orderDate&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theProductOrderedDate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;genymdhms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ID: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;student_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;Right&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orderDate&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Date&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;generationTimestamp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;student&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;readRecord&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ID: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;student&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;student_id&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+As you read, variable names with single letter, unpronounceable words or generic names such as
+data and total are all very confusing when dealing with this variable.
+These types of naming leads to assumptions when reading it and assumptions create bugs.
+Sometimes, these bad naming comes from thinking too much about appropriate names eventually it loses its meaning.
+
+&lt;br/&gt;
+&lt;br/&gt;
+When it comes to naming methods/functions, there is one simple rule.
+We know that a function does one job. Similarly, the function name should only answer to one question-
+&lt;b&gt;What does this function do?&lt;/b&gt;
+As you guess, it should have one verb and only tells about its purpose.
+If you create a function with nice name and the function does more than it suggests on its name,
+then you should reconsider renaming or moving extra logic into another function.
+The more atomic functions you have, the less arguments they will have as those
+functions do not need many arguments to do a single job. This makes code more beautiful and easy to reuse.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+Next comes naming classes. You may think this is the easiest one because you usually have more options to name a class
+compared to variable. This is not always true. One of the biggest issues with class naming is long sentence-like names.
+Here are couple of examples
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;a href=&quot;https://docs.spring.io/spring/docs/2.5.x/javadoc-api/org/springframework/aop/framework/AbstractSingletonProxyFactoryBean.html) https://docs.spring.io/spring/docs/2.5.x/javadoc-api/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.html&quot;&gt;
+    SimpleBeanFactoryAwareAspectInstanceFactory
+&lt;/a&gt;
+&lt;br/&gt;
+&lt;a href=&quot;http://grepcode.com/file/repository.springsource.com/org.aspectj/com.springsource.org.aspectj.weaver/1.6.3/org/aspectj/weaver/patterns/HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor.java&quot;&gt;
+    HasThisTypePatternTriedToSneakInSomeGenericOrParameterizedTypePatternMatchingStuffAnywhereVisitor
+&lt;/a&gt;
+&lt;br/&gt;
+To avoid such names, you may try locating classes in right packages with concise documentation. Class names dont have to say anything about how/when/where to use.
+The only question class name should concern is what this class is about.
+&lt;br/&gt;
+&lt;br/&gt;
+Habitual class naming such as ending exceptions with Exception keyword is another big issue among programmers.
+In most cases it completely makes sense to remove exception suffix from classes and
+the meaning does not change.
+&lt;i&gt;IllegalArgumentException&lt;/i&gt;, &lt;i&gt;NullReferenceException&lt;/i&gt; or &lt;i&gt;EntityNotFoundException&lt;/i&gt; are nice examples that can be used without the exception suffix.
+So, you may think about that not all big company libraries are appropriately named all the time.
+
+&lt;br/&gt;
+&lt;br/&gt;
+White space is nice space. Often I see people writing smashed-up code without leaving any white space/line anywhere.
+This makes really hard to read and eyes get strained when reading
+such code. So, in general, if you’re implementing more logic in one block, and then try to separate the code chunks into logical pieces,
+maybe have all of your code that positions some text fields, then a line of whitespace, and then write another chunk where you assign them all a value.
+Things like this might seem annoying at the time of writing, but are crucial when trying to quickly find something in a large section of unfamiliar code.
+
+&lt;br/&gt;
+&lt;br/&gt;
+Commenting, it saves time for programmer and money for company. The easiest way of contributing to project success is by commenting existing code.
+Sometimes, it seems daunting to write couple lines of comments after implementing performant algorithm or solving huge problem.
+But the commenting this adds more value to the solution.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+Here are some ways that can help you to make habit of writing clean code.
+You can always download nice coding style
+&lt;a href=&quot;https://google.github.io/styleguide/&quot;&gt;Google coding style guide&lt;/a&gt; and integrate it your powerful IDE.
+This makes sure that you have right naming convention and indentation to some extend.
+
+&lt;br/&gt;
+&lt;br/&gt;
+
+Happy clean coding!</content><summary type="html">In this article, I am going to talk about a few key points on how to write clean code by avoiding
+some common mistakes. The term clean code is very broad and subjective, but there are conventions, standards and points to consider in coding that makes it more human readable.
+
+Before starting talking about the key points to write clean code, I want to emphasize that It does
+not take one or two days to be good at clean coding. You need to practice
+until it becomes a second nature.
+
+
+You are author and reader. While writing code, keep in mind that you are author and your target audience is not computer, it is you, your coworkers and millions of other developers in case it is open source.
+Writing every line of code with this idea in mind helps you use your knowledge to its fullest.
+
+
+Let's start with very simple one-naming convention. Depending on your programming language choice,
+try to implement using only one (not mixed) naming convention across your team.
+Most popular ones are camelCase favoured by Java, C# community and snake_case which is popular among php and python programmers.</summary></entry><entry><title type="html">Microservice Architecture Pattern using Spring Boot and netflix technologies and helpful hints</title><link href="http://localhost:4000/blog/microservice-poc" rel="alternate" type="text/html" title="Microservice Architecture Pattern using Spring Boot and netflix technologies and helpful hints" /><published>2017-09-01T00:00:00-05:00</published><updated>2017-09-01T00:00:00-05:00</updated><id>http://localhost:4000/blog/microservice-poc</id><content type="html" xml:base="http://localhost:4000/blog/microservice-poc"></content></entry><entry><title type="html">File IO operation comparisons in Java</title><link href="http://localhost:4000/blog/fastest-io-in-java" rel="alternate" type="text/html" title="File IO operation comparisons in Java" /><published>2017-04-29T00:00:00-05:00</published><updated>2017-04-29T00:00:00-05:00</updated><id>http://localhost:4000/blog/fastest-io-in-java</id><content type="html" xml:base="http://localhost:4000/blog/fastest-io-in-java">&lt;style&gt;
     .table-bordered {
         border: 1px solid #ddd;
     }
