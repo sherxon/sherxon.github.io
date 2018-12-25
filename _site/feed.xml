@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-12T20:13:43-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-18T18:26:50-05:00</updated><id>http://localhost:4000//</id><title type="html">Algo &amp;amp; DS</title><subtitle>I am Sherali Obidov, This is my blog about algorithms, data structures, web development and Java. You can also find common algorithmic problems with their solutions and
  implementation of Data Structures in Java.
 </subtitle><entry><title type="html">How to write clean code</title><link href="http://localhost:4000/blog/clean-code" rel="alternate" type="text/html" title="How to write clean code" /><published>2018-03-12T00:00:00-05:00</published><updated>2018-03-12T00:00:00-05:00</updated><id>http://localhost:4000/blog/clean-code</id><content type="html" xml:base="http://localhost:4000/blog/clean-code">In this article, I am going to talk about a few key points on how to write clean code by avoiding
 some common mistakes. The term clean code is very broad and subjective, but there are conventions, standards and points to consider in coding that makes it more human readable.
@@ -86,10 +86,11 @@ So, you may think about that not all big company libraries are appropriately nam
 
 &lt;br/&gt;
 &lt;br/&gt;
-White space is nice space. Often I see people writing smashed-up code without leaving any white space/line anywhere.
-This makes really hard to read and eyes get strained when reading
-such code. So, in general, if you’re implementing more logic in one block, and then try to separate the code chunks into logical pieces,
-maybe have all of your code that positions some text fields, then a line of whitespace, and then write another chunk where you assign them all a value.
+White space is nice space. Often I see people writing smashed-up code without leaving any white space or line anywhere.
+This makes really hard to read and my eyes get strained while reading such code.
+If you’re implementing more logic in one block, and then try to separate the code chunks into logical pieces
+with a white line break. Maybe have all of your code that use data fetching from database,
+then a line of whitespace, and then write another chunk where you do process them.
 Things like this might seem annoying at the time of writing, but are crucial when trying to quickly find something in a large section of unfamiliar code.
 
 &lt;br/&gt;
